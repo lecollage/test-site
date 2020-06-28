@@ -102,6 +102,18 @@
                                     DOWNLOAD4
                                 </a>
                             </div>
+                            <div>
+                                <a href="https://drive.google.com/uc?export=download&id=1EaC6l5hE4QPKZBiuf98A-gJrluofAbBe"
+                                   download="DOWNLOAD5.jpg">
+                                    DOWNLOAD5
+                                </a>
+                            </div>
+                            <div>
+                                <a href="https://drive.google.com/uc?export=download&id=1EaC6l5hE4QPKZBiuf98A-gJrluofAbBe"
+                                   download>
+                                    DOWNLOAD6
+                                </a>
+                            </div>
                         </div>
                         <div class="s-services-type-1__button-wrapper">
                             <button type="button"
@@ -136,15 +148,25 @@
     function downloadImage(event, url, fileName) {
         event.preventDefault();
 
+        console.log('downloadImage START >> ');
+
         if (window.download && url) {
+            console.log('downloadImage STEP 1 >> ');
+
             fileName = fileName || url.split('/').pop().split('?')[0];
+
+            console.log('downloadImage STEP 2 >> fileName: ', fileName);
+
             var ajax = new XMLHttpRequest();
             ajax.open('GET', url, true);
             ajax.responseType = 'blob';
+            console.log('downloadImage STEP 3 >> ');
             ajax.onload = function (e) {
+                console.log('downloadImage STEP 4 download >> ');
                 download(e.target.response, fileName, 'application/octet-stream');
             };
             setTimeout(function () {
+                console.log('downloadImage STEP 5 >> ');
                 ajax.send();
             }, 0); // allows setting custom ajax headers using the return:
             return ajax;
